@@ -1,18 +1,19 @@
 package com.services.userService.interfaces;
 
 import com.services.userService.models.User;
+import com.services.userService.models.UserPayload;
 
 public interface UserService {
 
-    User createUser(String email, String password);
+    UserPayload createUser(UserPayload userPayload);
 
-    User getUser(String email);
+    User getUser(UserPayload userPayload);
 
     Iterable<User> getAllUsers();
 
-    User updateUser(String email);
+    User updateUser(UserPayload userPayload);
 
-    void deleteUser(String email);
+    void deleteUser(UserPayload userPayload);
 
     void deleteAllUsers();
 
