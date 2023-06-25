@@ -35,13 +35,12 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(user);
     }
 
-    public User getUser(UserPayload userPayload) {
-        User user = userMapper.toUser(userPayload);
-        User existedUser = userRepository.findByEmail(user.getEmail());
-        if(existedUser==null){
-            throw new EntityNotFoundException("User Not Found");
+    public User getUserByEmailId(String email) {
+        User existingUser = userRepository.findByEmail(email);
+        if(existingUser==null){
+            return null;
         }
-        return existedUser;
+        return existingUser;
     }
 
     public Iterable<User> getAllUsers() {

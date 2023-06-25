@@ -1,6 +1,8 @@
 package com.services.userService.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,8 +25,6 @@ public class UserController {
 
     @PostMapping(path="/create") // Map ONLY POST Requests
     public @ResponseBody UserPayload addNewUser (@RequestBody UserPayload userPayload) {
-      // @ResponseBody means the returned String is the response, not a view name
-      // @RequestParam means it is a parameter from the GET or POST request
       return userServiceImpl.createUser(userPayload);
     }
     @GetMapping
@@ -32,6 +32,13 @@ public class UserController {
       // This returns a JSON or XML with the users
       return userServiceImpl.getAllUsers();
     }
+
+    @RequestMapping(path="/graphql")
+    @QueryMapping
+    public User getUserByEmail(@Argument String email){
+        return userServiceImpl.getUserByEmailId(email);
+    }
+
 
     @DeleteMapping
     public @ResponseBody void deleteUser(@RequestParam UserPayload userPayload) {

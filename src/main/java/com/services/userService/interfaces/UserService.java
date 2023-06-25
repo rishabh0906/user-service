@@ -7,7 +7,7 @@ public interface UserService {
 
     UserPayload createUser(UserPayload userPayload);
 
-    User getUser(UserPayload userPayload);
+    User getUserByEmailId(String email);
 
     Iterable<User> getAllUsers();
 
