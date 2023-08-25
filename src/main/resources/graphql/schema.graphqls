@@ -1,0 +1,14 @@
+type Query {
+  getUserByEmail(email: String): User
+}
+
+type User {
+    id:ID,
+    name:String,
+    email:String,
+    password:String,
+    createBy:String,
+    modifiedBy:String,
+    creationTime:String,
+    modifiedTime:String
+}
